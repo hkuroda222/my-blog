@@ -16,7 +16,8 @@ const Post: NextPage<{
   );
 };
 
-export async function getStaticProps(context) {
+// TODO: contextの型付け
+export async function getStaticProps(context: any) {
   const params = context.params;
   const file = fs.readFileSync(`./src/posts/${params.slug}.md`, 'utf-8');
   const { data, content } = matter(file);

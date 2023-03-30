@@ -1,9 +1,9 @@
 import fs from 'fs';
 import { NextPage } from 'next';
-import Link from 'next/link';
 import matter from 'gray-matter';
-
 import Head from 'next/head';
+
+import { Card } from '@/components/parts/card';
 
 const Home: NextPage<{
   posts: Array<{
@@ -12,7 +12,6 @@ const Home: NextPage<{
   }>;
 }> = (props) => {
   const { posts } = props;
-  console.log(posts);
   return (
     <>
       <Head>
@@ -24,9 +23,7 @@ const Home: NextPage<{
       <main>
         <div className="my-8">
           {posts.map((post) => (
-            <div key={post.slug}>
-              <Link href={`posts/${post.slug}`}>{post.frontMatter.title}</Link>
-            </div>
+            <Card post={post} key={post.slug} />
           ))}
         </div>
       </main>
